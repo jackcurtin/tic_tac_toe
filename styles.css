@@ -3,3 +3,21 @@ header {
     text-align: center;
     font-weight: bolder;
 }
+
+#grid {
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 300px 300px 300px;
+    grid-template-columns: 300px 300px 300px;
+    margin-top: 40px;
+}
+
+.box {
+    border: 1px solid black;
+}
+
+.box:hover{
+    background-color: yellow;
+    opacity: 50%;
+}
+

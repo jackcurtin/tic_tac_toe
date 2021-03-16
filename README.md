@@ -1,5 +1,5 @@
 Page loads with a blank grid, 3x3
-    create grid in HTML, style with flexbox
+    create grid in HTML
     create event listeners for each box that change their color
         and value to correspond to who clicked them, then make them
         inactive so they cannot be chosen again
