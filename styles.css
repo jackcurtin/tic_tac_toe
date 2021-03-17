@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+
+
+body{
+    background-color: black;
+    color: whitesmoke;
+    font-family: 'Righteous', cursive;
+}
 header {
     font-size: xx-large;
     text-align: center;
@@ -5,8 +14,15 @@ header {
 }
 
 h2 {
-    font-style: italic;
+    font-weight: lighter;
     text-align: center;
+}
+
+main{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
 }
 
 nav {
@@ -23,15 +39,14 @@ form.name-input {
     justify-content: center;
     grid-template-rows: 200px 200px 200px;
     grid-template-columns: 200px 200px 200px;
-    margin-top: 30px;
 }
 
 .box {
-    border: 1px solid black;
+    border: 1px solid whitesmoke;
 }
 
 .box:hover{
-    background-color: yellow;
-    opacity: 50%;
+    background-color: white;
+    opacity: 95%;
 }
 

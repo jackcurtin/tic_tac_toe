@@ -28,7 +28,7 @@ class Player {
         if (this.nameChanged === false) {
             this.name = nameForms[this.playerIndex].querySelector('input').value;
             this.nameChanged = true;
-            Game.clearGame();
+            game.clearGame();
         } else {
             alert ('you cannot change your name again')
         }
@@ -37,7 +37,7 @@ class Player {
     claimBox(currentBox){
         document.querySelector(`#${currentBox}`).style.backgroundColor = `${this.color}`;
         this.playerChoices.push(currentBox);
-        Game.occupiedSquares.push(currentBox);
+        game.occupiedSquares.push(currentBox);
         this.checkWinningCombos();
     }
     checkWinningCombos(){
@@ -47,7 +47,7 @@ class Player {
                 if (this.playerChoices.indexOf(winningCombos[i][1]) >= 0){
                     if (this.playerChoices.indexOf(winningCombos[i][2]) >= 0){
                         this.playerWinningCombo = winningCombos[i];
-                        Game.winner = `${this.name}`;
+                        game.winner = `${this.name}`;
                         this.playerTotalVictories++;
                         this.playerWinningCombo.forEach(box => {
                             document.querySelector(`#${box}`).style.border = '20px solid gold';
@@ -62,51 +62,59 @@ class Player {
 let playerOne = new Player('Player 1', 'red', 0);
 let playerTwo = new Player('Player 2','blue', 1);
 
-const Game = {
+const game = {
     players: [playerOne, playerTwo],
     turn: playerOne.name,
     occupiedSquares: [],
     winner: null,
+    running: true,
 
     checkWinner() {
         if (this.winner === playerOne.name || this.winner === playerTwo.name) {
             console.log(`${this.winner}  wins!`)
             gameText.innerText= `${this.winner}  wins!`;
+            this.running = false;
         } else if (this.occupiedSquares.length === 9 && this.winner === null){
-            console.log('it is a draw');
+            gameText.innerText= `It is a draw`;
+            this.running = false;
         }
     },
     clearGame(){
         allBoxes.forEach(box => {
             box.style.backgroundColor = null;
-            box.style.border = '1px solid black';
+            box.style.border = '1px solid whitesmoke';
         })
         this.winner = null;
         this.occupiedSquares = [];
         this.turn = playerOne.name;
         playerOne.playerChoices = [];
         playerTwo.playerChoices = [];
-        gameText.innerHTML = `${Game.turn} click a box to start!`
+        gameText.innerHTML = `${game.turn} click a box to start!`
+        this.running = true;
     }
 }
 
 allBoxes.forEach(box =>{
     box.addEventListener('click', (e) => {
         let currentBox = e.target.id;
-        if (!Game.occupiedSquares.includes(currentBox)){
-            if (Game.turn === null){
-                Game.turn = playerOne.name;
-            }else if (Game.turn === playerOne.name){
-                playerOne.claimBox(currentBox);
-                Game.turn = playerTwo.name;
-            } else{
-                playerTwo.claimBox(currentBox);
-                Game.turn = playerOne.name;
+        if (game.running === true) {
+            if (!game.occupiedSquares.includes(currentBox)) {
+                if (game.turn === null) {
+                    game.turn = playerOne.name;
+                } else if (game.turn === playerOne.name) {
+                    playerOne.claimBox(currentBox);
+                    game.turn = playerTwo.name;
+                } else {
+                    playerTwo.claimBox(currentBox);
+                    game.turn = playerOne.name;
+                }
+                gameText.innerHTML = `It is ${game.turn}\'s turn!`
+                game.checkWinner();
+            } else {
+                gameText.innerHTML = 'Square already selected, try a different one'
             }
-            gameText.innerHTML = `It is ${Game.turn}\'s turn!`
-            Game.checkWinner();
-        } else{
-            console.log('try again')
+        } else {
+            gameText.innerHTML = `${game.winner} has already won. You cannot keep playing.`
         }
     })
 })
@@ -124,10 +132,10 @@ nameForms.forEach(form => {
 })
 
 clearBtn.addEventListener('click', () => {
-    Game.clearGame();
+    game.clearGame();
 })
 
-gameText.innerHTML = `${Game.turn} click a box to start!`;
+gameText.innerHTML = `${game.turn} click a box to start!`;
 
 
 
