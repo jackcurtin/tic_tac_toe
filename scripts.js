@@ -3,7 +3,8 @@ const gameText = document.querySelector('h2');
 const clearBtn = document.querySelector('#clearBtn');
 const nameForms = document.querySelectorAll('.name-input');
 const colorSelects = document.querySelectorAll('select');
-const colorOptions = document.querySelector('#playerOneColor').children;
+const playerOneColorOptions = document.querySelector('#playerOneColor').children;
+const playerTwoColorOptions = document.querySelector('#playerTwoColor').children;
 const winningCombos = [
     ['box1', 'box2', 'box3'],
     ['box1', 'box4', 'box7'],
@@ -36,13 +37,24 @@ class Player {
         }
     }
 
-    changeColor(color){
-        for(let i = 0; i<colorOptions.length; i++){
-            if (color == colorOptions[i].value){
-                this.color = color;
-                this.playerChoices.forEach(box => {
-                    document.querySelector(`#${box}`).style.backgroundColor = this.color;
-                })
+    changeColor(color) {
+        if (this.playerIndex === 0) {
+            for (let i = 0; i < playerOneColorOptions.length; i++) {
+                if (color == playerOneColorOptions[i].value) {
+                    this.color = color;
+                    this.playerChoices.forEach(box => {
+                        document.querySelector(`#${box}`).style.backgroundColor = this.color;
+                    })
+                }
+            }
+        } else {
+            for (let i = 0; i < playerTwoColorOptions.length; i++) {
+                if (color == playerTwoColorOptions[i].value) {
+                    this.color = color;
+                    this.playerChoices.forEach(box => {
+                        document.querySelector(`#${box}`).style.backgroundColor = this.color;
+                    })
+                }
             }
         }
     }
@@ -63,7 +75,7 @@ class Player {
                         game.winner = `${this.name}`;
                         this.playerTotalVictories++;
                         this.playerWinningCombo.forEach(box => {
-                            document.querySelector(`#${box}`).style.border = '20px solid gold';
+                            document.querySelector(`#${box}`).style.border = '20px solid white';
                         })
                     }
                 }
