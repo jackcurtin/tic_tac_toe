@@ -51,6 +51,9 @@ const Game = {
         if (this.winner === playerOne.name || this.winner === playerTwo.name) {
             console.log(`${this.winner}  wins!`)
             this.clearGame()
+        } else if (this.occupiedSquares.length === 9 && this.winner === null){
+            console.log('it is a draw');
+            Game.clearGame();
         }
     },
     clearGame(){
