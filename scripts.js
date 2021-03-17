@@ -20,6 +20,7 @@ class Player {
     claimBox(currentBox){
         document.querySelector(`#${currentBox}`).style.backgroundColor = `${this.color}`;
         this.playerChoices.push(currentBox);
+        Game.occupiedSquares.push(currentBox);
         this.checkWinningCombos();
     }
     checkWinningCombos(){
@@ -37,13 +38,13 @@ class Player {
     }
 }
 
-let turn = 'red'
 let playerOne = new Player('me', 'red');
 let playerTwo = new Player('you','blue');
 
 const Game = {
     players: [playerOne, playerTwo],
     turn: playerOne.name,
+    occupiedSquares: [],
     winner: null,
 
     checkWinner() {
@@ -57,6 +58,7 @@ const Game = {
             box.style.backgroundColor = null;
         })
         this.winner = null;
+        this.occupiedSquares = [];
         playerOne.playerChoices = [];
         playerTwo.playerChoices = [];
     }
@@ -65,15 +67,18 @@ const Game = {
 allBoxes.forEach(box =>{
     box.addEventListener('click', (e) => {
         let currentBox = e.target.id;
-        if (turn === 'red'){
-            playerOne.claimBox(currentBox);
-            turn = 'blue';
+        if (!Game.occupiedSquares.includes(currentBox)){
+            if (Game.turn === playerOne.name){
+                playerOne.claimBox(currentBox);
+                Game.turn = playerTwo.name;
+            } else{
+                playerTwo.claimBox(currentBox);
+                Game.turn = playerOne.name;
+            }
+            Game.checkWinner();
         } else{
-            playerTwo.claimBox(currentBox);
-            turn = 'red'
+            console.log('try again')
         }
-        Game.checkWinner();
-
     })
 })
 
