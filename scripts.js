@@ -2,6 +2,8 @@ const allBoxes = document.querySelectorAll('.box');
 const gameText = document.querySelector('h2');
 const clearBtn = document.querySelector('#clearBtn');
 const nameForms = document.querySelectorAll('.name-input');
+const colorSelects = document.querySelectorAll('select');
+const colorOptions = document.querySelector('#playerOneColor').children;
 const winningCombos = [
     ['box1', 'box2', 'box3'],
     ['box1', 'box4', 'box7'],
@@ -31,6 +33,17 @@ class Player {
             game.clearGame();
         } else {
             alert ('you cannot change your name again')
+        }
+    }
+
+    changeColor(color){
+        for(let i = 0; i<colorOptions.length; i++){
+            if (color == colorOptions[i].value){
+                this.color = color;
+                this.playerChoices.forEach(box => {
+                    document.querySelector(`#${box}`).style.backgroundColor = this.color;
+                })
+            }
         }
     }
 
@@ -114,7 +127,7 @@ allBoxes.forEach(box =>{
                 gameText.innerHTML = 'Square already selected, try a different one'
             }
         } else {
-            gameText.innerHTML = `${game.winner} has already won. You cannot keep playing.`
+            gameText.innerHTML = `${game.winner} has already won. Clear the board to play again!`
         }
     })
 })
@@ -128,6 +141,19 @@ nameForms.forEach(form => {
             playerTwo.changeName();
         }
         form.querySelector('input').value = null;
+    })
+})
+
+colorSelects.forEach(color => {
+    color.addEventListener('change', (e) => {
+        e.preventDefault();
+        let newColor = e.target.value
+        if (color.id === 'playerOneColor') {
+            playerOne.changeColor(newColor);
+        } else {
+            playerTwo.changeColor(newColor);
+        }
+
     })
 })
 
