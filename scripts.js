@@ -17,14 +17,15 @@ const winningCombos = [
 ];
 
 class Player {
-    constructor(name, color,playerIndex) {
-        this.name = name
+    constructor(name, color,playerIndex, token) {
+        this.name = name;
         this.nameChanged = false;
-        this.color = color
-        this.playerChoices = []
-        this.playerWinningCombo = []
-        this.playerTotalVictories = 0
-        this.playerIndex = playerIndex
+        this.color = color;
+        this.playerChoices = [];
+        this.playerWinningCombo = [];
+        this.playerTotalVictories = 0;
+        this.playerIndex = playerIndex;
+        this.token = token
     }
 
     changeName(){
@@ -43,7 +44,7 @@ class Player {
                 if (color == playerOneColorOptions[i].value) {
                     this.color = color;
                     this.playerChoices.forEach(box => {
-                        document.querySelector(`#${box}`).style.backgroundColor = this.color;
+                        document.querySelector(`#${box}`).style.color = this.color;
                     })
                 }
             }
@@ -60,7 +61,9 @@ class Player {
     }
 
     claimBox(currentBox){
-        document.querySelector(`#${currentBox}`).style.backgroundColor = `${this.color}`;
+        // document.querySelector(`#${currentBox}`).style.backgroundColor = `${this.color}`;
+        document.querySelector(`#${currentBox}`).innerHTML = `${this.token}`
+        document.querySelector(`#${currentBox}`).style.color = `${this.color}`
         this.playerChoices.push(currentBox);
         game.occupiedSquares.push(currentBox);
         this.checkWinningCombos();
@@ -84,8 +87,8 @@ class Player {
     }
 }
 
-let playerOne = new Player('Player 1', 'red', 0);
-let playerTwo = new Player('Player 2','blue', 1);
+let playerOne = new Player('Player 1', 'red', 0, 'X');
+let playerTwo = new Player('Player 2','blue', 1, 'O');
 
 const game = {
     players: [playerOne, playerTwo],
@@ -128,6 +131,7 @@ allBoxes.forEach(box =>{
                     game.turn = playerOne.name;
                 } else if (game.turn === playerOne.name) {
                     playerOne.claimBox(currentBox);
+
                     game.turn = playerTwo.name;
                 } else {
                     playerTwo.claimBox(currentBox);
@@ -165,7 +169,6 @@ colorSelects.forEach(color => {
         } else {
             playerTwo.changeColor(newColor);
         }
-
     })
 })
 

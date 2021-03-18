@@ -28,10 +28,12 @@ main{
 nav {
     display: inline-flex;
     flex-direction: column;
+
 }
 
 form.name-input {
     display: inline-flex;
+    align-content: space-between;
 }
 
 #grid {
@@ -39,10 +41,16 @@ form.name-input {
     justify-content: center;
     grid-template-rows: 200px 200px 200px;
     grid-template-columns: 200px 200px 200px;
+    margin-right: 25%;
 }
 
 .box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 1px solid whitesmoke;
+    font-size: 125px;
+    font-weight: lighter;
 }
 
 .box:hover{
