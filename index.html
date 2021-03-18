@@ -14,25 +14,34 @@
     <h2></h2>
     <main>
         <nav>
-            <form class="name-input" id="player1Form">
-                <input id="playerOneNameInput" placeholder= "enter player 1 name">
-                <button id="playerOneNameBtn">submit</button>
-            </form>
-            <form class="name-input" id="player2Form">
-                <input id="playerTwoNameInput" placeholder= "enter player 2 name">
-                <button id="playerTwoNameBtn">submit</button>
-            </form>
+            <div id="playerUIs">
+                <div class="playerUI" id="playerOneUI">
+                    <form class="name-input" id="player1Form">
+                        <input id="playerOneNameInput" placeholder= "enter player 1 name">
+                        <button id="playerOneNameBtn">submit</button>
+                    </form>
+                    <select id="playerOneColor" name="color">
+                        <option value="red">Player 1 : Red</option>
+                        <option value="yellow">Player 1 : Yellow</option>
+                        <option value="orange">Player 1 : Orange</option>
+                    </select>
+                </div>
+
+                <div class="playerUI" id="playerTwoUI">
+                    <form class="name-input" id="player2Form">
+                        <input id="playerTwoNameInput" placeholder= "enter player 2 name">
+                        <button id="playerTwoNameBtn">submit</button>
+                    </form>
+                    <select id="playerTwoColor" name="color">
+                        <option value="blue">Player 2 : Blue</option>
+                        <option value="green">Player 2 : Green</option>
+                        <option value="purple">Player 2 : Purple</option>
+                    </select>
+                </div>
+
+            </div>
+
             <button id="clearBtn">CLEAR BOARD</button>
-            <select id="playerOneColor" name="color">
-                <option value="red">Player 1 : Red</option>
-                <option value="yellow">Player 1 : Yellow</option>
-                <option value="orange">Player 1 : Orange</option>
-            </select>
-            <select id="playerTwoColor" name="color">
-                <option value="blue">Player 2 : Blue</option>
-                <option value="green">Player 2 : Green</option>
-                <option value="purple">Player 2 : Purple</option>
-            </select>
         </nav>
         <section id="grid">
             <div class="box" id="box1" ></div>
