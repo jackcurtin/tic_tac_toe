@@ -97,7 +97,7 @@ class Player {
 }
 
 let playerOne = new Player('Player 1', '#cae4db', 0, 'X');
-let playerTwo = new Player('Player 2','#df7861', 1, 'O');
+let playerTwo = new Player('Player 2','#f05454', 1, 'O');
 
 const game = {
     players: [playerOne, playerTwo],
@@ -195,6 +195,3 @@ clearBtn.addEventListener('click', () => {
 })
 
 gameText.innerHTML = `${game.turn} click a box to start!`;
-
-
-
