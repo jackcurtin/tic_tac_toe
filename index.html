@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -22,10 +23,11 @@
                         <button id="playerOneNameBtn">submit</button>
                     </form>
                     <select id="playerOneColor" name="color">
-                        <option value="red">Player 1 : Red</option>
-                        <option value="yellow">Player 1 : Yellow</option>
-                        <option value="orange">Player 1 : Orange</option>
+                        <option value="red">Red</option>
+                        <option value="yellow">Yellow</option>
+                        <option value="orange">Orange</option>
                     </select>
+                    <h5 id="playerOneVictories">Victories: 0</h5>
                 </div>
 
                 <div class="playerUI" id="playerTwoUI">
@@ -35,10 +37,11 @@
                         <button id="playerTwoNameBtn">submit</button>
                     </form>
                     <select id="playerTwoColor" name="color">
-                        <option value="blue">Player 2 : Blue</option>
-                        <option value="green">Player 2 : Green</option>
-                        <option value="purple">Player 2 : Purple</option>
+                        <option value="blue">Blue</option>
+                        <option value="green">Green</option>
+                        <option value="purple">Purple</option>
                     </select>
+                    <h5 id="playerTwoVictories">Victories: 0</h5>
                 </div>
 
             </div>
@@ -58,6 +61,7 @@
         </section>
     </main>
 
+    <audio id="sound" src="Picked%20Coin%20Echo.wav"></audio>
     <script src="scripts.js"><</script>
 </body>
 </html>

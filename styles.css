@@ -52,7 +52,9 @@ select{
     width: 80%;
     height: 50%;
     padding: 2% 5%;
-    margin: 10%;
+    margin: 10% 10% 0;
+    opacity: 80%;
+
 }
 input {
     width: 60%;
@@ -62,7 +64,8 @@ form{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: auto 5%
+    margin: auto 5%;
+    opacity: 80%;
 }
 
 #grid {
@@ -92,4 +95,22 @@ form{
     width: 30%;
     padding: 2%;
 }
+
+@media screen and (max-width: 800px) {
+    main {
+        display: block;
+    }
+    #grid {
+        margin: auto;
+        justify-content: center;
+        grid-template-rows: 100px 100px 100px;
+        grid-template-columns: 100px 100px 100px;
+    }
+
+    .box {
+        font-size: 5em;
+    }
+
+}
+
 

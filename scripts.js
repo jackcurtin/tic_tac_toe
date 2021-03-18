@@ -5,6 +5,7 @@ const nameForms = document.querySelectorAll('.name-input');
 const colorSelects = document.querySelectorAll('select');
 const playerOneColorOptions = document.querySelector('#playerOneColor').children;
 const playerTwoColorOptions = document.querySelector('#playerTwoColor').children;
+const soundEffect = document.querySelector('audio');
 const winningCombos = [
     ['box1', 'box2', 'box3'],
     ['box1', 'box4', 'box7'],
@@ -44,7 +45,7 @@ class Player {
                 if (color == playerOneColorOptions[i].value) {
                     this.color = color;
                     this.playerChoices.forEach(box => {
-                        document.querySelector(`#${box}`).style.color = this.color;
+                        document.querySelector(`#${box}TokenArea`).style.color = this.color;
                     })
                 }
             }
@@ -53,7 +54,7 @@ class Player {
                 if (color == playerTwoColorOptions[i].value) {
                     this.color = color;
                     this.playerChoices.forEach(box => {
-                        document.querySelector(`#${box}`).style.color = this.color;
+                        document.querySelector(`#${box}TokenArea`).style.color = this.color;
                     })
                 }
             }
@@ -61,9 +62,13 @@ class Player {
     }
 
     claimBox(currentBox){
-        // document.querySelector(`#${currentBox}`).style.backgroundColor = `${this.color}`;
-        document.querySelector(`#${currentBox}`).innerHTML = `${this.token}`
-        document.querySelector(`#${currentBox}`).style.color = `${this.color}`
+        let tokenArea = document.createElement('div')
+        tokenArea.classList.add('animate__fadeIn');
+        tokenArea.id = `${currentBox}TokenArea`;
+        tokenArea.innerHTML = `${this.token}`;
+        tokenArea.style.color = `${this.color}`;
+        document.querySelector(`#${currentBox}`).appendChild(tokenArea);
+        soundEffect.play();
         this.playerChoices.push(currentBox);
         game.occupiedSquares.push(currentBox);
         this.checkWinningCombos();
@@ -125,14 +130,14 @@ const game = {
 
 allBoxes.forEach(box =>{
     box.addEventListener('click', (e) => {
-        let currentBox = e.target.id;
+        let currentBox = e.currentTarget.id;
+        console.log(e.currentTarget);
         if (game.running === true) {
             if (!game.occupiedSquares.includes(currentBox)) {
                 if (game.turn === null) {
                     game.turn = playerOne.name;
                 } else if (game.turn === playerOne.name) {
                     playerOne.claimBox(currentBox);
-
                     game.turn = playerTwo.name;
                 } else {
                     playerTwo.claimBox(currentBox);
@@ -140,11 +145,17 @@ allBoxes.forEach(box =>{
                 }
                 gameText.innerHTML = `It is ${game.turn}\'s turn!`
                 game.checkWinner();
+                if (game.winner === playerOne.name){
+                    document.querySelector('#playerOneVictories').innerHTML = `Victories ${playerOne.playerTotalVictories}`;
+                } else {
+                    document.querySelector('#playerTwoVictories').innerHTML = `Victories ${playerTwo.playerTotalVictories}`;
+                }
             } else {
                 gameText.innerHTML = 'Square already selected, try a different one'
             }
         } else {
-            gameText.innerHTML = `${game.winner} has already won. Clear the board to play again!`
+            gameText.innerText = `${game.winner} has already won. 
+            Clear the board to play again!`
         }
     })
 })
