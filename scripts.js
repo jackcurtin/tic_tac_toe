@@ -62,7 +62,7 @@ class Player {
     }
 
     claimBox(currentBox){
-        let tokenArea = document.createElement('div')
+        let tokenArea = document.createElement('p')
         tokenArea.classList.add('animate__animated', 'animate__fadeIn');
         tokenArea.id = `${currentBox}TokenArea`;
         tokenArea.innerHTML = `${this.token}`;
@@ -83,7 +83,11 @@ class Player {
                         game.winner = `${this.name}`;
                         this.playerTotalVictories++;
                         this.playerWinningCombo.forEach(box => {
-                            document.querySelector(`#${box}`).style.border = '20px solid white';
+                            let victorySquares = document.querySelector(`#${box}`)
+                            victorySquares.style.border = '20px solid white';
+                            victorySquares.classList.add('animate__animated', 'animate__pulse');
+                            victorySquares.style.setProperty('--animate-duration', 'repeat');
+
                         })
                     }
                 }
@@ -92,8 +96,8 @@ class Player {
     }
 }
 
-let playerOne = new Player('Player 1', 'red', 0, 'X');
-let playerTwo = new Player('Player 2','blue', 1, 'O');
+let playerOne = new Player('Player 1', '#cae4db', 0, 'X');
+let playerTwo = new Player('Player 2','#df7861', 1, 'O');
 
 const game = {
     players: [playerOne, playerTwo],
