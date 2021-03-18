@@ -53,7 +53,7 @@ class Player {
                 if (color == playerTwoColorOptions[i].value) {
                     this.color = color;
                     this.playerChoices.forEach(box => {
-                        document.querySelector(`#${box}`).style.backgroundColor = this.color;
+                        document.querySelector(`#${box}`).style.color = this.color;
                     })
                 }
             }
@@ -110,6 +110,7 @@ const game = {
     clearGame(){
         allBoxes.forEach(box => {
             box.style.backgroundColor = null;
+            box.innerHTML = '';
             box.style.border = '1px solid whitesmoke';
         })
         this.winner = null;
@@ -153,8 +154,10 @@ nameForms.forEach(form => {
         e.preventDefault();
         if (form.id === 'player1Form') {
             playerOne.changeName();
+            document.querySelector('#playerOneNametag').innerHTML = `${playerOne.name}`
         } else {
             playerTwo.changeName();
+            document.querySelector('#playerTwoNametag').innerHTML = `${playerTwo.name}`
         }
         form.querySelector('input').value = null;
     })
