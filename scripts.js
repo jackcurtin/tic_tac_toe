@@ -63,7 +63,7 @@ class Player {
 
     claimBox(currentBox){
         let tokenArea = document.createElement('div')
-        tokenArea.classList.add('animate__fadeIn');
+        tokenArea.classList.add('animate__animated', 'animate__fadeIn');
         tokenArea.id = `${currentBox}TokenArea`;
         tokenArea.innerHTML = `${this.token}`;
         tokenArea.style.color = `${this.color}`;
