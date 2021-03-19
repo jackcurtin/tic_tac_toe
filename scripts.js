@@ -133,7 +133,7 @@ allBoxes.forEach(box =>{
                     playerTwo.claimBox(currentBox);
                     game.turn = playerOne.name;
                 }
-                gameText.innerHTML = `It is ${game.turn}\'s turn`; //display whose turn it is
+                gameText.innerHTML = `It is ${game.turn}\'s turn.`; //display whose turn it is
                 game.checkWinner(); //after each box is claimed, check and see if the winner property through claimBox => checkWinningCombos
                 if (game.winner === playerOne.name){
                     document.querySelector('#playerOneVictories').innerHTML = `Victories: ${playerOne.playerTotalVictories}`; //updates victory count based on player property
@@ -180,4 +180,4 @@ clearBtn.addEventListener('click', () => {
     game.clearGame();
 })
 
-gameText.innerHTML = `${game.turn} click a box to start!`;
+gameText.innerHTML = `${game.turn} click a box to start.`;
