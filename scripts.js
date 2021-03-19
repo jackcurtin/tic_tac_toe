@@ -25,7 +25,7 @@ class Player {
         this.playerWinningCombo = [];
         this.playerTotalVictories = 0;
         this.playerIndex = playerIndex;
-        this.token = token
+        this.token = token;
     }
 
     changeName(){
@@ -50,7 +50,7 @@ class Player {
     }
 
     claimBox(currentBox){
-        let tokenArea = document.createElement('p')
+        let tokenArea = document.createElement('p');
         tokenArea.classList.add('animate__animated', 'animate__fadeIn');
         tokenArea.id = `${currentBox}TokenArea`;
         tokenArea.innerHTML = `${this.token}`;
@@ -72,13 +72,13 @@ class Player {
                         game.winner = `${this.name}`;
                         this.playerTotalVictories++;
                         this.playerWinningCombo.forEach(box => {
-                            let victorySquares = document.querySelector(`#${box}`)
+                            let victorySquares = document.querySelector(`#${box}`);
                             victorySquares.style.border = '15px solid #f5f4f4';
                             victorySquares.classList.add('animate__animated', 'animate__pulse', 'animate__repeat-2');
                             allSounds[allSounds.length-1].load();
                             setTimeout(function () {
                                 allSounds[allSounds.length - 1].play();
-                            },1310)
+                            },1310);
                             })
                     }
                 }
@@ -99,14 +99,13 @@ const game = {
 
     checkWinner() {
         if (this.winner === playerOne.name || this.winner === playerTwo.name) {
-            console.log(`${this.winner}  wins!`)
             gameText.innerText= `${this.winner}  wins!`;
             this.running = false;
         } else if (this.occupiedSquares.length === 9 && this.winner === null){
             allSounds[2].load();
             setTimeout(function () {
                 allSounds[2].play();
-            },100)
+            },100);
             gameText.innerText= `It is a draw`;
             this.running = false;
         }
@@ -114,7 +113,7 @@ const game = {
     clearGame(){
         allBoxes.forEach(box => {
             box.innerHTML = '';
-            box.classList.remove('animate__animated', 'animate__pulse');
+            box.classList.remove('animate__animated', 'animate__pulse',);
             box.style.border = '1px solid #f5f4f4';
         })
         this.winner = null;
@@ -122,7 +121,7 @@ const game = {
         this.turn = playerOne.name;
         playerOne.playerChoices = [];
         playerTwo.playerChoices = [];
-        gameText.innerHTML = `${game.turn} click a box to start!`
+        gameText.innerHTML = `${game.turn} click a box to start!`;
         this.running = true;
     }
 }
@@ -139,19 +138,19 @@ allBoxes.forEach(box =>{
                     playerTwo.claimBox(currentBox);
                     game.turn = playerOne.name;
                 }
-                gameText.innerHTML = `It is ${game.turn}\'s turn!`
+                gameText.innerHTML = `It is ${game.turn}\'s turn!`;
                 game.checkWinner();
                 if (game.winner === playerOne.name){
-                    document.querySelector('#playerOneVictories').innerHTML = `Victories ${playerOne.playerTotalVictories}`;
+                    document.querySelector('#playerOneVictories').innerHTML = `Victories: ${playerOne.playerTotalVictories}`;
                 } else {
-                    document.querySelector('#playerTwoVictories').innerHTML = `Victories ${playerTwo.playerTotalVictories}`;
+                    document.querySelector('#playerTwoVictories').innerHTML = `Victories: ${playerTwo.playerTotalVictories}`;
                 }
             } else {
-                gameText.innerHTML = 'Square already selected, try a different one'
+                gameText.innerHTML = 'Square already selected, try a different one';
             }
         } else {
             gameText.innerText = `${game.winner} has already won. 
-            Clear the board to play again!`
+            Clear the board to play again!`;
         }
     })
 })
@@ -161,10 +160,10 @@ nameForms.forEach(form => {
         e.preventDefault();
         if (form.id === 'player1Form') {
             playerOne.changeName();
-            document.querySelector('#playerOneNametag').innerHTML = `${playerOne.name}`
+            document.querySelector('#playerOneNametag').innerHTML = `${playerOne.name}`;
         } else {
             playerTwo.changeName();
-            document.querySelector('#playerTwoNametag').innerHTML = `${playerTwo.name}`
+            document.querySelector('#playerTwoNametag').innerHTML = `${playerTwo.name}`;
         }
         form.querySelector('input').value = null;
     })
@@ -173,7 +172,7 @@ nameForms.forEach(form => {
 colorSelectors.forEach(color => {
     color.addEventListener('change', (e) => {
         e.preventDefault();
-        let newColor = e.target.value
+        let newColor = e.target.value;
         if (color.id === 'playerOneColor') {
             playerOne.changeColor(newColor);
         } else {
