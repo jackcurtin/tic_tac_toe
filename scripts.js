@@ -56,7 +56,6 @@ class Player {
         tokenArea.innerHTML = `${this.token}`;
         tokenArea.style.color = `${this.color}`;
         document.querySelector(`#${currentBox}`).appendChild(tokenArea);
-        // let randomSoundIndex = Math.floor(Math.random() * Math.floor(allSounds.length - 2));
         allSounds[this.playerIndex].load();
         allSounds[this.playerIndex].play();
         this.playerChoices.push(currentBox);
@@ -112,8 +111,8 @@ const game = {
     },
     clearGame(){
         allBoxes.forEach(box => {
-            box.style.backgroundColor = null;
             box.innerHTML = '';
+            box.classList.remove('animate__animated', 'animate__pulse');
             box.style.border = '1px solid #f5f4f4';
         })
         this.winner = null;
@@ -129,7 +128,6 @@ const game = {
 allBoxes.forEach(box =>{
     box.addEventListener('click', (e) => {
         let currentBox = e.currentTarget.id;
-        console.log(e.currentTarget);
         if (game.running === true) {
             if (!game.occupiedSquares.includes(currentBox)) {
                 if (game.turn === playerOne.name) {

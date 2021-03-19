@@ -95,6 +95,7 @@ form{
     width: 30%;
     padding: 2%;
     background-color: #f5f4f4;
+    border: none;
 }
 
 @media screen and (max-width: 800px) {
