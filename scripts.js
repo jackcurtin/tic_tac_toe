@@ -5,7 +5,7 @@ const nameForms = document.querySelectorAll('.name-input');
 const colorSelects = document.querySelectorAll('select');
 const playerOneColorOptions = document.querySelector('#playerOneColor').children;
 const playerTwoColorOptions = document.querySelector('#playerTwoColor').children;
-const soundEffect = document.querySelector('audio');
+const allSounds = document.querySelectorAll('audio');
 const winningCombos = [
     ['box1', 'box2', 'box3'],
     ['box1', 'box4', 'box7'],
@@ -68,7 +68,9 @@ class Player {
         tokenArea.innerHTML = `${this.token}`;
         tokenArea.style.color = `${this.color}`;
         document.querySelector(`#${currentBox}`).appendChild(tokenArea);
-        soundEffect.play();
+        let randomSoundIndex = Math.floor(Math.random() * Math.floor(allSounds.length - 2));
+        allSounds[randomSoundIndex].load();
+        allSounds[randomSoundIndex].play();
         this.playerChoices.push(currentBox);
         game.occupiedSquares.push(currentBox);
         this.checkWinningCombos();
@@ -86,7 +88,8 @@ class Player {
                             let victorySquares = document.querySelector(`#${box}`)
                             victorySquares.style.border = '20px solid white';
                             victorySquares.classList.add('animate__animated', 'animate__pulse');
-                            victorySquares.style.setProperty('--animate-duration', 'repeat');
+                            allSounds[allSounds.length-1].load();
+                            allSounds[allSounds.length-1].play();
 
                         })
                     }
