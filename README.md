@@ -43,7 +43,7 @@ as the winner and end the game.*
 *Establish player class
 properties include:
 color
-create Red and Blue Player instances*
+create Red and Blue Player instances
     create grid in HTML
     create event listeners for each box that change their color
         and value to correspond to who clicked them, then make them
