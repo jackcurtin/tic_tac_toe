@@ -9,7 +9,11 @@ Playing is simple - click a square to select it. The text above the UIs will ind
 
 --
 
+<<<<<<< HEAD
 I have included my original *pseudocode* at the bottom of this document. When compared with my code/commit history, you'll see that this project diverted from pretty early on. I started by creating the grid with separate *divs* for each box within it. Then I created event listeners for each *div*, which is where I took my first turn away from the original plan.
+=======
+I have included my original *pseudocode* at the bottom of this document. When compared with my code/commit history, you'll see that this project diverted from pretty early on. I started by creating the grid with separate *divs* for each box within it. Then I created event listeners for each *div*, which is where I took my first turn away from the original plan. 
+>>>>>>> 8d9c17d94855a3cffcbfef03c3b895977e6479ed
 
 As I thought about the winning conditions more, it made more sense to me to store the ids of each box selected within an array distinct for each player rather than the other way around. These arrays could be compared with an array filled with nested arrays of every possible winning condition. Every time a player selects a square, it adds the square to the player specific array of their selections, and compares this array to each array with the winning conditions array with a for loop. Using *indexOf*, it checks to see if the first box within any winning conditions array is found within the player's array. If it is, it moves onto the second box of that winning condition, and then likewise to third. If the third box is found within the player array, the player is declared the winner!
 
@@ -22,6 +26,7 @@ Below I have listed my original *pseudocode*:
 
 
 *Page loads with a blank grid, 3x3
+<<<<<<< HEAD
 create grid in HTML
 create event listeners for each box that change their color
 and value to correspond to who clicked them, then make them
@@ -47,3 +52,30 @@ as the winner and end the game.*
 properties include:
 color
 create Red and Blue Player instances*
+=======
+    create grid in HTML
+    create event listeners for each box that change their color
+        and value to correspond to who clicked them, then make them
+        inactive so they cannot be chosen again*
+    
+
+*Establish Game class
+    properties include:
+        whose turn it is - starts on player 1
+        who has won - starts null
+    methods include:
+        scan board to for matches
+            called once selection is made - if no winner yet, will
+            shift turn to next player - if 3 in a row, will call
+            declare winner function
+        declare winner
+            called by scan board, will take declare the current turn-holder
+                as the winner and end the game.*
+            
+*create firstGame instance*
+
+*Establish player class
+    properties include:
+        color
+    create Red and Blue Player instances*
+>>>>>>> 8d9c17d94855a3cffcbfef03c3b895977e6479ed
