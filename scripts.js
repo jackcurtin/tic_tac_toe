@@ -63,7 +63,6 @@ class Player {
         this.checkWinningCombos();
     }
     checkWinningCombos(){
-        this.playerChoices.sort();
         for (let i = 0; i < winningCombos.length; i++){
             if (this.playerChoices.indexOf(winningCombos[i][0]) >= 0){
                 if (this.playerChoices.indexOf(winningCombos[i][1]) >= 0){
