@@ -74,7 +74,7 @@ class Player {
                         this.playerTotalVictories++;
                         this.playerWinningCombo.forEach(box => {
                             let victorySquares = document.querySelector(`#${box}`)
-                            victorySquares.style.border = '20px solid white';
+                            victorySquares.style.border = '15px solid #f5f4f4';
                             victorySquares.classList.add('animate__animated', 'animate__pulse');
                             allSounds[allSounds.length-1].load();
                             setTimeout(function () {
@@ -104,6 +104,8 @@ const game = {
             gameText.innerText= `${this.winner}  wins!`;
             this.running = false;
         } else if (this.occupiedSquares.length === 9 && this.winner === null){
+            allSounds[2].load();
+            allSounds[2].play();
             gameText.innerText= `It is a draw`;
             this.running = false;
         }
@@ -130,9 +132,7 @@ allBoxes.forEach(box =>{
         console.log(e.currentTarget);
         if (game.running === true) {
             if (!game.occupiedSquares.includes(currentBox)) {
-                if (game.turn === null) {
-                    game.turn = playerOne.name;
-                } else if (game.turn === playerOne.name) {
+                if (game.turn === playerOne.name) {
                     playerOne.claimBox(currentBox);
                     game.turn = playerTwo.name;
                 } else {
