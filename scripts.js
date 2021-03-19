@@ -2,9 +2,8 @@ const allBoxes = document.querySelectorAll('.box');
 const gameText = document.querySelector('h2');
 const clearBtn = document.querySelector('#clearBtn');
 const nameForms = document.querySelectorAll('.name-input');
-const colorSelects = document.querySelectorAll('select');
-const playerOneColorOptions = document.querySelector('#playerOneColor').children;
-const playerTwoColorOptions = document.querySelector('#playerTwoColor').children;
+const colorSelectors = document.querySelectorAll('select');
+const colorOptions = document.querySelector('#playerOneColor')
 const allSounds = document.querySelectorAll('audio');
 const winningCombos = [
     ['box1', 'box2', 'box3'],
@@ -35,28 +34,17 @@ class Player {
             this.nameChanged = true;
             game.clearGame();
         } else {
-            alert ('you cannot change your name again')
+            alert ('You have already chosen your name')
         }
     }
 
     changeColor(color) {
-        if (this.playerIndex === 0) {
-            for (let i = 0; i < playerOneColorOptions.length; i++) {
-                if (color == playerOneColorOptions[i].value) {
-                    this.color = color;
-                    this.playerChoices.forEach(box => {
-                        document.querySelector(`#${box}TokenArea`).style.color = this.color;
-                    })
-                }
-            }
-        } else {
-            for (let i = 0; i < playerTwoColorOptions.length; i++) {
-                if (color == playerTwoColorOptions[i].value) {
-                    this.color = color;
-                    this.playerChoices.forEach(box => {
-                        document.querySelector(`#${box}TokenArea`).style.color = this.color;
-                    })
-                }
+        for (let i = 0; i < colorOptions.length; i++) {
+            if (color == colorOptions[i].value) {
+                this.color = color;
+                this.playerChoices.forEach(box => {
+                    document.querySelector(`#${box}TokenArea`).style.color = this.color;
+                })
             }
         }
     }
@@ -68,9 +56,9 @@ class Player {
         tokenArea.innerHTML = `${this.token}`;
         tokenArea.style.color = `${this.color}`;
         document.querySelector(`#${currentBox}`).appendChild(tokenArea);
-        let randomSoundIndex = Math.floor(Math.random() * Math.floor(allSounds.length - 2));
-        allSounds[randomSoundIndex].load();
-        allSounds[randomSoundIndex].play();
+        // let randomSoundIndex = Math.floor(Math.random() * Math.floor(allSounds.length - 2));
+        allSounds[this.playerIndex].load();
+        allSounds[this.playerIndex].play();
         this.playerChoices.push(currentBox);
         game.occupiedSquares.push(currentBox);
         this.checkWinningCombos();
@@ -89,9 +77,10 @@ class Player {
                             victorySquares.style.border = '20px solid white';
                             victorySquares.classList.add('animate__animated', 'animate__pulse');
                             allSounds[allSounds.length-1].load();
-                            allSounds[allSounds.length-1].play();
-
-                        })
+                            setTimeout(function () {
+                                allSounds[allSounds.length - 1].play();
+                            },1310)
+                            })
                     }
                 }
             }
@@ -123,7 +112,7 @@ const game = {
         allBoxes.forEach(box => {
             box.style.backgroundColor = null;
             box.innerHTML = '';
-            box.style.border = '1px solid whitesmoke';
+            box.style.border = '1px solid #f5f4f4';
         })
         this.winner = null;
         this.occupiedSquares = [];
@@ -181,7 +170,7 @@ nameForms.forEach(form => {
     })
 })
 
-colorSelects.forEach(color => {
+colorSelectors.forEach(color => {
     color.addEventListener('change', (e) => {
         e.preventDefault();
         let newColor = e.target.value
