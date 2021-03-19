@@ -74,7 +74,7 @@ class Player {
                         this.playerWinningCombo.forEach(box => {
                             let victorySquares = document.querySelector(`#${box}`)
                             victorySquares.style.border = '15px solid #f5f4f4';
-                            victorySquares.classList.add('animate__animated', 'animate__pulse');
+                            victorySquares.classList.add('animate__animated', 'animate__pulse', 'animate__repeat-2');
                             allSounds[allSounds.length-1].load();
                             setTimeout(function () {
                                 allSounds[allSounds.length - 1].play();
@@ -104,7 +104,9 @@ const game = {
             this.running = false;
         } else if (this.occupiedSquares.length === 9 && this.winner === null){
             allSounds[2].load();
-            allSounds[2].play();
+            setTimeout(function () {
+                allSounds[2].play();
+            },100)
             gameText.innerText= `It is a draw`;
             this.running = false;
         }

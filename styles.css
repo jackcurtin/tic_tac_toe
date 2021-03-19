@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
-
-
 body{
     background-color: #00303f;
     color: #f5f4f4;
@@ -82,6 +80,8 @@ form{
     border: 1px solid #f5f4f4;
     font-size: 10em;
     font-weight: lighter;
+    --animate-repeat: 2;
+    --animate-duration: 1310ms;
 }
 
 .box:hover{
