@@ -1,5 +1,7 @@
 # NEW AGE TIC TAC TOE
 
+deployment: https://jackcurtin.github.io/tic_tac_toe/
+
 ### The aesthetic of this game was inspired by the album Structures from Silence by Steve Roach, which I have linked below.
 *https://www.youtube.com/watch?v=AsIjyJvhR9A*
 
